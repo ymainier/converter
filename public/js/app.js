@@ -38,8 +38,23 @@ $('#type').on('change', function () {
   convert();
 });
 
-$('#type').change();
+$(function () {
+  $('#type').change();
+});
 
 $('form').on('submit', function (event) {
   event.preventDefault();
 });
+
+// Use yql and google to obtain a recent USD to EUR conversion rate
+$.get("http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20%3D%20%22USDEUR%22&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=?",
+  function (result) {
+    var rate = result && result.query && result.query.results && result.query.results.rate;
+    if (rate) {
+      $taux.text(rate.Rate);
+      $taux.parent().addClass("badge-success");
+      convert();
+    }
+  },
+  'json'
+);
