@@ -1,0 +1,16 @@
+{
+  "name": "converter",
+  "version": "0.0.1",
+  "author": "Yann Mainier <yann.mainier@gmail.com>",
+  "subdomain": "converter.ymainier",
+  "description": "Convert USD in EUR including bank charges",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "3.0.0rc2"
+  },
+  "engines": {
+    "node": ">=0.8"
+  }
+}
